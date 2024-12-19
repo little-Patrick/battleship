@@ -6,6 +6,7 @@ class Cell
   def initialize(coordinate)
     @coordinate = coordinate
     @empty = true
+    @ship = ()
   end
 
   def empty?
@@ -16,8 +17,9 @@ class Cell
   end
 
   def place_ship(ship)
-    
-    
+    if @empty == true
+      @ship = ship
+    end
   end
   
 end
