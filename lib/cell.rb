@@ -8,6 +8,10 @@ class Cell
     @empty = true
   end
 
-
+  def empty?
+    if @ship != nil
+      @empty = false
+    end
+  end
   
 end
