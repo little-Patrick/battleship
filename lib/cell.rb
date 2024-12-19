@@ -12,6 +12,12 @@ class Cell
     if @ship != nil
       @empty = false
     end
+    @empty
+  end
+
+  def place_ship(ship)
+    
+    
   end
   
 end
