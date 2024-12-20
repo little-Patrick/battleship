@@ -1,7 +1,9 @@
 
 
 class Board
-  attr_reader :cells, :valid_coordinate
+  attr_reader :cells, 
+              :valid_coordinate,
+              :valid_placement
 
   def initialize
     @cells = {
@@ -32,4 +34,10 @@ class Board
     end
   end
 
+  def valid_placement?(ship, coordinate)
+    if ship.length == coordinate.count
+      @valid_placement = true
+    end
+    @valid_placement
+  end
 end

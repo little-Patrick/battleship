@@ -30,8 +30,10 @@ RSpec.describe Board do
   end
 
   describe 'validating placements' do
-    
-    
+    it 'has placement' do
+      expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
+    end
+
   end
   
 end
