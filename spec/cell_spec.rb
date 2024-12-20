@@ -29,5 +29,16 @@ RSpec.describe Cell do
     end
   end
 
-  describe ''
+  describe '#cell being fired upon' do
+    it 'does fired_upon work' do
+      @cell.place_ship(@cruiser)
+
+      expect(@cell.fired_upon?).to eq(false)
+
+      @cell.fire_upon
+
+      expect(@cell.ship.health).to eq(2)
+      expect(@cell.fired_upon?).to eq(true)
+    end
+  end
 end

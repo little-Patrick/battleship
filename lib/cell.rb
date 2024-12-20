@@ -20,6 +20,7 @@ class Cell
   def place_ship(ship)
     if @empty == true
       @ship = ship
+      @empty = false
     end
   end
 
@@ -29,7 +30,8 @@ class Cell
   
   def fire_upon
     if @empty == false
-      @ship.hit && @fired_upon = true
+      @ship.hit
+      @fired_upon = true
     end
   end
 end
