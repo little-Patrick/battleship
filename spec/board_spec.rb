@@ -4,7 +4,9 @@ require './spec/spec_helper'
 RSpec.describe Board do
   before(:each) do
     @board = Board.new
-   
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
+
   end
 
   describe 'initialize' do
@@ -24,10 +26,12 @@ RSpec.describe Board do
       expect(@board.valid_coordinate?('A5')).to eq(false)
       expect(@board.valid_coordinate?('E1')).to eq(false)
       expect(@board.valid_coordinate?('A22')).to eq(false)
-
     end
-
   end
 
+  describe 'validating placements' do
+    
+    
+  end
   
 end
