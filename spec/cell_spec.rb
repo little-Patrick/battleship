@@ -46,6 +46,13 @@ RSpec.describe Cell do
   describe '#render' do
     it 'returns expected visual on board' do
       expect(@cell_1.render).to eq('.')
+      @cell_1.fire_upon
+      expect(@cell_1.render).to eq('M')
+
+      @cell_2.place_ship(@cruiser)
+      expect(@cell_2.render).to eq('.')
+
+      
     end
   end
 end

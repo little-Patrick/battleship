@@ -35,7 +35,7 @@ class Cell
     end
   end
 
-  def render
-    
+  def render(show = false)
+
   end
 end
