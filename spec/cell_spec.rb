@@ -5,40 +5,47 @@ require './lib/cell'
 
 RSpec.describe Cell do
   before(:each) do
-    @cell = Cell.new('B4')
+    @cell_1 = Cell.new('B4')
+    @cell_2 = Cell.new('C3')
     @cruiser = Ship.new('Cruiser', 3)
   end
 
   describe 'exist' do
     it 'initializes' do
-      expect(@cell).to be_an_instance_of(Cell)
+      expect(@cell_1).to be_an_instance_of(Cell)
     end
 
     it 'has elements' do
-      expect(@cell.coordinate).to eq('B4')
-      expect(@cell.ship).to eq(nil)
-      expect(@cell.empty?).to eq(true)
+      expect(@cell_1.coordinate).to eq('B4')
+      expect(@cell_1.ship).to eq(nil)
+      expect(@cell_1.empty?).to eq(true)
     end
   end
 
-  describe 'holding a ship in cell' do
+  describe 'holding a ship in cell_1' do
     it 'places a ship' do
-      @cell.place_ship(@cruiser)
-      expect(@cell.ship).to eq(@cruiser)
-      expect(@cell.empty?).to eq(false)
+      @cell_1.place_ship(@cruiser)
+      expect(@cell_1.ship).to eq(@cruiser)
+      expect(@cell_1.empty?).to eq(false)
     end
   end
 
-  describe '#cell being fired upon' do
+  describe '#cell_1 being fired upon' do
     it 'does fired_upon work' do
-      @cell.place_ship(@cruiser)
+      @cell_1.place_ship(@cruiser)
 
-      expect(@cell.fired_upon?).to eq(false)
+      expect(@cell_1.fired_upon?).to eq(false)
 
-      @cell.fire_upon
+      @cell_1.fire_upon
 
-      expect(@cell.ship.health).to eq(2)
-      expect(@cell.fired_upon?).to eq(true)
+      expect(@cell_1.ship.health).to eq(2)
+      expect(@cell_1.fired_upon?).to eq(true)
+    end
+  end
+
+  describe '#render' do
+    it 'returns expected visual on board' do
+      expect(@cell_1.render).to eq('.')
     end
   end
 end

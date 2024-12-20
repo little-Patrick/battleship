@@ -34,4 +34,8 @@ class Cell
       @fired_upon = true
     end
   end
+
+  def render
+    
+  end
 end
