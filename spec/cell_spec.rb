@@ -28,4 +28,6 @@ RSpec.describe Cell do
       expect(@cell.empty?).to eq(false)
     end
   end
+
+  describe ''
 end
