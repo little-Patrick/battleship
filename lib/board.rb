@@ -35,9 +35,16 @@ class Board
   end
 
   def valid_placement?(ship, coordinate)
-    if ship.length == coordinate.count
-      @valid_placement = true
-    end
+  ship.length == coordinate.count ? c_and_l = true : c_and_l = false
+  binding.pry
+  coordinate.each 
+  
+  # coordinate.each_cons(ship.length){|x| x = ship.length}
+
+
     @valid_placement
   end
 end
+
+# array to be in order
+# confirms array has the same value
