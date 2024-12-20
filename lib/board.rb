@@ -1,7 +1,7 @@
 
 
 class Board
-  attr_reader :cells
+  attr_reader :cells, :valid_coordinate
 
   def initialize
     @cells = {
@@ -23,6 +23,13 @@ class Board
           "D4" => Cell.new('D4')
           }
   end
-
+  def valid_coordinate?(coordinate)
+   
+    if @cells.include?(coordinate) == true
+      @valid_coordinate = true
+    else
+      @valid_coordinate = false
+    end
+  end
 
 end
