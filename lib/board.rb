@@ -35,16 +35,20 @@ class Board
   end
 
   def valid_placement?(ship, coordinate)
-  ship.length == coordinate.count ? c_and_l = true : c_and_l = false
-  row = coordinate.map {|x| x.slice(0, 1)}
-  column  = coordinate.map {|x| x.slice(1, 1)}
-  binding.pry
-  coordinate.each 
+    ship.length == coordinate.count ? c_and_l = true : c_and_l = false
+    #letter
+    row = coordinate.map {|letter| letter.slice(0, 1)}
+    # #number
+    column  = coordinate.map {|num| num.slice(1, 1).to_i}
+    binding.pry
+
+
+
   
-  # coordinate.each_cons(ship.length){|x| x = ship.length}
+    # coordinate.each_cons(ship.length){|x| x = ship.length}
 
 
-    @valid_placement
+    @valid_placement = c_and_l
   end
 end
 
