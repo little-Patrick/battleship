@@ -53,8 +53,10 @@ class Board
         valid_placement << (b - a == 1)
       end
     elsif column.uniq.length == 1
-      column.each_cons(2) do |a, b| 
-        valid_placement << (b - a == 1)
+      row.each_cons(2) do |a, b| 
+        binding.pry
+        valid_placement << (b.ord - a.ord == 1)
+        
       end
     else
       return false
