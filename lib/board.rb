@@ -45,12 +45,19 @@ class Board
     row_ordered = row == row.sort
     column_ordered = column == column.sort.each_cons(2) {|a, b| return false if b - a != 1}
     
-
-    if c_and_l == true && row_ordered == true && column_ordered == true
-      @valid_placement = true
-    else
-      @valid_placement = false
+    row_same = row.uniq.length == 1
+    column_same = column.uniq.length == 1
+    
+    if row_same || column_same 
+      diagonal = false
+    else diagonal = true
     end
+
+      if c_and_l == true && row_ordered == true && column_ordered == true && diagonal == false
+        @valid_placement = true
+      else
+        @valid_placement = false
+      end
       
       @valid_placement  
   end
