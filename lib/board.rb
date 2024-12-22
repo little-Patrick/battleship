@@ -36,6 +36,8 @@ class Board
 
   def valid_placement?(ship, coordinate)
   ship.length == coordinate.count ? c_and_l = true : c_and_l = false
+  row = coordinate.map {|x| x.slice(0, 1)}
+  column  = coordinate.map {|x| x.slice(1, 1)}
   binding.pry
   coordinate.each 
   
