@@ -1,0 +1,5 @@
+require './lib/board.rb'
+require './lib/cell.rb'
+require './lib/ship.rb'
+require 'rspec'
+require 'pry'
