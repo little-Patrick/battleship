@@ -47,7 +47,14 @@ RSpec.describe Board do
       expect(@board.valid_placement?(@cruiser, ["A1", "B2", "C3"])).to eq(false)
     end
 
+    it 'can pass when needed' do
+      expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
+    end
 
+    it 'cruiser' do
+      expect(@board.valid_placement?(@cruiser, ["B1", "C1", "D1"])).to eq(true)
+
+    end
 
   end
 end
