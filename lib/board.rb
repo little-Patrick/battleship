@@ -40,15 +40,19 @@ class Board
     row = coordinate.map {|letter| letter.slice(0, 1)}
     # #number
     column  = coordinate.map {|num| num.slice(1, 1).to_i}
-    binding.pry
 
 
+    row_ordered = row == row.sort
+    column_ordered = column == column.sort.each_cons(2) {|a, b| return false if b - a != 1}
+    
 
-  
-    # coordinate.each_cons(ship.length){|x| x = ship.length}
-
-
-    @valid_placement = c_and_l
+    if c_and_l == true && row_ordered == true && column_ordered == true
+      @valid_placement = true
+    else
+      @valid_placement = false
+    end
+      
+      @valid_placement  
   end
 end
 
