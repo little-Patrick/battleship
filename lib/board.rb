@@ -54,14 +54,26 @@ class Board
       end
     elsif column.uniq.length == 1
       row.each_cons(2) do |a, b| 
-        binding.pry
+
         valid_placement << (b.ord - a.ord == 1)
         
       end
     else
       return false
     end
+
     valid_placement.all?{|b| b == true}
+
+  end
+
+  #starting the place method here
+  def place(ship, coordinates)
+    if valid_placement == true #do you think it would be good to have this as a condition? Would we need valid_coordinate to be checked too?
+      #I think it has to be an enumerable here
+      coordinates.each do |coordinate|
+        coordinate.place_ship(ship)
+      end
+    end
   end
 end
 
