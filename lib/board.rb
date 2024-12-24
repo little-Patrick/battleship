@@ -24,6 +24,8 @@ class Board
           "D3" => Cell.new('D3'), 
           "D4" => Cell.new('D4')
           }
+    @valid_coordinate = false
+    @valid_placement = false
   end
 
   def valid_coordinate?(coordinate)
@@ -34,34 +36,48 @@ class Board
     end
   end
 
-  def valid_placement?(ship, coordinate)
+  def valid_placement?(ship, coordinates)
     # ship.length == coordinate.count ? c_and_l = true : c_and_l = false
-    return false if ship.length != coordinate.count
+    return false if ship.length != coordinates.count || coordinates.any? { |coordinate| cells[coordinate].empty? == false}
     #letter
-    row = coordinate.map do |letter| 
+    row = coordinates.map do |letter| 
       letter.slice(0, 1)
     end
     # #number
-    column  = coordinate.map do |num| 
+    column  = coordinates.map do |num| 
       num.slice(1, 1).to_i
     end
     
-    valid_placement = []
+    # valid_placement = []
 
     if row.uniq.length == 1
-      column.each_cons(2) do |a, b| 
-        valid_placement << (b - a == 1)
+      column.each_cons(2).all? do |a, b| 
+        @valid_placement = true if (b - a == 1)
       end
+      # column.each_cons(2) do |a, b| 
+      #   valid_placement << (b - a == 1)
+      # end
     elsif column.uniq.length == 1
-      row.each_cons(2) do |a, b| 
-        binding.pry
-        valid_placement << (b.ord - a.ord == 1)
+      row.each_cons(2).all? do |a, b| 
+        @valid_placement = true if (b.ord - a.ord == 1)
+        end
+      # row.each_cons(2) do |a, b| 
+
+      #   valid_placement << (b.ord - a.ord == 1)
         
-      end
+      # end
     else
-      return false
+      return @valid_placement = false
     end
-    valid_placement.all?{|b| b == true}
+    # valid_placement.all?{|b| b == true}
+  end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates) == true
+      coordinates.each do |coordinate|
+        cells[coordinate].place_ship(ship)
+      end
+    end
   end
 end
 
