@@ -36,15 +36,15 @@ class Board
     end
   end
 
-  def valid_placement?(ship, coordinate)
+  def valid_placement?(ship, coordinates)
     # ship.length == coordinate.count ? c_and_l = true : c_and_l = false
-    return false if ship.length != coordinate.count
+    return false if ship.length != coordinates.count || coordinates.any? { |coordinate| cells[coordinate].empty? == false}
     #letter
-    row = coordinate.map do |letter| 
+    row = coordinates.map do |letter| 
       letter.slice(0, 1)
     end
     # #number
-    column  = coordinate.map do |num| 
+    column  = coordinates.map do |num| 
       num.slice(1, 1).to_i
     end
     
@@ -73,9 +73,10 @@ class Board
   end
 
   def place(ship, coordinates)
-    # binding.pry
-    coordinates.each do |coordinate|
-      cells[coordinate].place_ship(ship)
+    if valid_placement?(ship, coordinates) == true
+      coordinates.each do |coordinate|
+        cells[coordinate].place_ship(ship)
+      end
     end
   end
 end
