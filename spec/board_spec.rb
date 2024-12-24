@@ -81,4 +81,8 @@ RSpec.describe Board do
       expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to eq(false)
     end
   end
+
+  describe 'rendering the board' do
+
+  end
 end

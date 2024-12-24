@@ -79,6 +79,10 @@ class Board
       end
     end
   end
+
+  def render
+    
+  end
 end
 
   
