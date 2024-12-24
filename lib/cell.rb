@@ -39,14 +39,14 @@ class Cell
 
   def render(show = false)
 
-    if @fired_upon == false && show == true
-      p 'S'
+    if @fired_upon == false && show == true && @ship
+      'S'
     elsif @fired_upon == false
-      p '.'
+      '.'
     elsif @fired_upon == true && @empty == true
-      p 'M'
+      'M'
     elsif @fired_upon == true && @empty == false && @ship.sunk? == false
-      p 'H'
+      'H'
     else @fired_upon == true && @empty == false && @ship.sunk? == true
       'X'
     end
