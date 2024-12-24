@@ -80,13 +80,17 @@ class Board
     end
   end
 
-  def render
-    cells_to_render = ""
+  def render(show = false)
+    rendered_cells = ""
     @cells.each do |coordinate, cell|
-      cells_to_render << cell.render
-      binding.pry
+      rendered_cells << " #{cell.render(show)}"
     end
+
+    bunches =rendered_cells.chars.each_slice(8).map(&:join)
+
+"  1 2 3 4 \nA#{bunches[0]} \nB#{bunches[1]} \nC#{bunches[2]} \nD#{bunches[3]} \n"
   end
+
 end
 
   

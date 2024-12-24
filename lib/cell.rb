@@ -39,7 +39,7 @@ class Cell
 
   def render(show = false)
 
-    if @fired_upon == false && show == true
+    if @fired_upon == false && show == true && @ship
       'S'
     elsif @fired_upon == false
       '.'
