@@ -58,10 +58,10 @@ RSpec.describe Board do
     end
   end
 
-  #started here with writing the spec for place. decided to put it on the board spec, let me know if you think it should go somewhere else
   describe 'placing ships' do
-    xit 'can tell what ship is in what cell' do
+    it 'can tell what ship is in what cell' do
       @board.place(@cruiser, ["A1", "A2", "A3"])
+
       cell_1 = @board.cells["A1"]
       cell_2 = @board.cells["A2"]
       cell_3 = @board.cells["A3"]
@@ -69,7 +69,6 @@ RSpec.describe Board do
       expect(cell_1.ship).to eq(@cruiser)
       expect(cell_2.ship).to eq(@cruiser)
       expect(cell_3.ship).to eq(@cruiser)
-      #I think the goal is just to get each cell.ship to show the ship that is in it.
     end
   end
 end

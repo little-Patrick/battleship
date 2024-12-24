@@ -24,8 +24,8 @@ class Board
           "D3" => Cell.new('D3'), 
           "D4" => Cell.new('D4')
           }
-    @valid_coordinate = nil
-    @valid_placement = nil
+    @valid_coordinate = false
+    @valid_placement = false
   end
 
   def valid_coordinate?(coordinate)
@@ -67,22 +67,15 @@ class Board
         
       # end
     else
-      return false
+      return @valid_placement = false
     end
-
     # valid_placement.all?{|b| b == true}
-
   end
 
-  #starting the place method here
   def place(ship, coordinates)
-    binding.pry
-    if valid_placement == true #do you think it would be good to have this as a condition? Would we need valid_coordinate to be checked too?
-      #I think it has to be an enumerable here
-      coordinates.each do |coordinate|
-        coordinate.place_ship(ship)
-        
-      end
+    # binding.pry
+    coordinates.each do |coordinate|
+      cells[coordinate].place_ship(ship)
     end
   end
 end
