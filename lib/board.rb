@@ -81,7 +81,11 @@ class Board
   end
 
   def render
-    
+    cells_to_render = ""
+    @cells.each do |coordinate, cell|
+      cells_to_render << cell.render
+      binding.pry
+    end
   end
 end
 
@@ -126,3 +130,14 @@ end
   # see if the letters are in order
   # the ship placement is valid
   # else valid placement is false
+
+      # cells_to_render = cells.to_a
+
+    # rendered_cells = cells_to_render.map do |cell|
+    #   binding.pry
+    #   cells[cell].render
+    # end
+
+    # split_cells = rendered_cells.each_slice(4).to_a
+
+    # "  1 2 3 4 \nA #{split_cells[0]} \nB #{split_cells[1]} \nC #{split_cells[2]} \nD #{split_cells[3]}\n"
