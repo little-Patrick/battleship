@@ -12,7 +12,5 @@ if start_game == 'q'
     exit
   
 else start_game == 'p'
-   
-
-  
+  game.start
 end

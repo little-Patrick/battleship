@@ -12,7 +12,7 @@ class Game
   end
 
   def game_over?
-    
+    # when the board has no more "S" showing
   end
 
 
