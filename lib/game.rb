@@ -15,14 +15,24 @@ class Game
 
 
 
-  def setup
+  def start
     place_computers_ships
     place_player_ships
+
+    display_board
+    until game_over?
+      player_turn
+      break if game_over?
+      computer_turn
+      break if game_over?
+      display_board
+    end
+    puts "-------GAME OVER-------"
   end
 
 
   def game_over?
-    
+    @
   end
 
   private
@@ -45,6 +55,13 @@ class Game
 
       end
     end
+  end
+
+  def display_board
+    puts 'THE ENEMY'
+    puts @computer_board.render
+    puts 'Friendly'
+    puts @player_board.render(true)
   end
 end
 
