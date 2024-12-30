@@ -7,7 +7,11 @@ class Turn
   end
 
   def player_turn
-    
+    coordinate_guess = gets.chomp()
+    shots_fired = Game.player_turn(coordinate_guess)
+    shots_fired.fire_upon
+
+    board.render
   end
 
   def computer_turn

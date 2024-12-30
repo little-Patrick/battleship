@@ -15,7 +15,25 @@ class Game
     # when the board has no more "S" showing
   end
 
+  def start
+    place_computers_ships
+  end
 
 
+  private
+
+  def place_computers_ships
+    placed = false
+    until placed = true
+      computer_ships.valid_coordinate?
+      if coordinate = valid?
+        use coordinate
+
+        computer_ship.length = cell.count
+
+        placed = true
+      end
+    end
+  end
   
 end
