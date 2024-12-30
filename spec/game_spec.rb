@@ -2,7 +2,9 @@ require './spec/spec_helper.rb'
 require './lib/game.rb'
 
 RSpec.describe Game do
+  before(:each) do
   @game = Game.new
+  end
 
   describe 'initialize' do
     it 'exists' do
@@ -10,7 +12,8 @@ RSpec.describe Game do
       expect(@game.player_ships).to eq([Ship.new("Cruiser", 3), Ship.new("Submarine", 2)])
     end
 
-    it 'starts' do
+    it 'setup' do
+      @game.place_computers_ships
       
     end
 
