@@ -75,17 +75,12 @@ class Game
   private
 
   def place_computers_ships
-    placed = 0
-    until placed == @computer_ships.count
-      @computer_ships.each do |ship|
-        binding.pry
+    @computer_ships.each do |ship|
+      loop do
         potential_coordinates = @computer_board.cells.keys.sample(ship.length)
-        check = @computer_board.valid_placement?(ship, potential_coordinates)
-        if check == true
+        if @computer_board.valid_placement?(ship, potential_coordinates)
           @computer_board.place(ship, potential_coordinates)
-          placed += 1
-        else
-
+          break
         end
       end
     end
