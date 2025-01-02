@@ -16,6 +16,7 @@ class Game
 
 
   def start
+    puts "Welcome to Battleship!"
     place_computers_ships
     place_player_ships
 
@@ -35,7 +36,6 @@ class Game
 
     player_ships_afloat = @player_board.render(true).flatten.include?("S")
     computer_ship_afloat = @computer_board.render(true).flatten.include?("S")
-binding.pry
   
     if player_ship_afloat = false
       puts "you lose"
@@ -49,6 +49,7 @@ binding.pry
   end
 
   private
+
 
   def place_computers_ships
     placed = false
