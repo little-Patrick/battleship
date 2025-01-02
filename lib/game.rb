@@ -17,5 +17,20 @@ class Game
 
 
 
-  
+  def turn(player)
+    if player == player
+      loop do
+        gets chomp
+      end
+    elsif player == computer
+      loop do
+        computer_guess = @player_board.cells.keys.sample
+        if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
+          @player_board.cells[computer_guess].fire_upon
+        end
+      end
+    end
+
+  end
+
 end
