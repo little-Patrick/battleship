@@ -37,11 +37,13 @@ class Game
     if player_ships_afloat == false
       puts "Wow you're bad at this game"
       puts "Loser"
+      puts " "
       true
     elsif computer_ships_afloat == false
       puts "The final missile has been fired, and a still takes to the seas..." 
       puts "The tale of what happened here today will live on in the whisper of the waves, and the heart of the sailors who carry on..."
       puts "You Have Emerged Victorious"
+      puts " "
       true
     else 
       false
@@ -64,7 +66,7 @@ class Game
         end
         break
       else
-         puts "Invalid Coordinate, Try Firing Again."
+        puts "Invalid Coordinate, Try Firing Again."
       end
     end
   end
@@ -99,7 +101,7 @@ class Game
   def place_player_ships
     @player_ships.each do |ship|
       loop do
-        puts "Select #{ship.length} coordinates (A letter and a number, A-D, 1-4) for your #{ship.name} to be stationed."
+        puts "Select #{ship.length} coordinates (A letter and a number, A-D, 1-4. Please input in alphabetical order.) for your #{ship.name} to be stationed."
         potential_coordinates = gets.chomp().to_s.upcase.split(", ")
         if @player_board.valid_placement?(ship, potential_coordinates)
           @player_board.place(ship, potential_coordinates)
