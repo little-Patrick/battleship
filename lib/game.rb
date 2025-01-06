@@ -33,10 +33,8 @@ class Game
 
 
   def game_over?
-# binding.pry
     player_ships_afloat = @player_board.render(true).include?("S")
     computer_ships_afloat = @computer_board.render(true).include?("S")
-  # binding.pry
     if player_ships_afloat == false
       puts "you lose"
       true
@@ -55,9 +53,14 @@ class Game
       player_guess = gets.chomp.upcase
       if @computer_board.valid_coordinate?(player_guess) && @computer_board.cells[player_guess].fired_upon? == false
         @computer_board.cells[player_guess].fire_upon
-        puts "Invalid Coordinate, Try Firing Again."
+        if  @computer_board.cells[player_guess].empty?
+          puts 'SpLoOoOoOOsH...'
+        else
+          puts'!!!!KAhbOooOOoOMmmM!!!'
+        end
         break
       else
+         puts "Invalid Coordinate, Try Firing Again."
       end
     end
   end
@@ -105,6 +108,7 @@ class Game
   end
     
   def display_board
+    puts ' '
     puts '---THE ENEMY---'
     puts @computer_board.render
     puts ' '
