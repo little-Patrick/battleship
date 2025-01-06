@@ -55,9 +55,9 @@ class Game
       player_guess = gets.chomp.upcase
       if @computer_board.valid_coordinate?(player_guess) && @computer_board.cells[player_guess].fired_upon? == false
         @computer_board.cells[player_guess].fire_upon
+        puts "Invalid Coordinate, Try Firing Again."
         break
       else
-        puts "Invalid Coordinate, Try Firing Again."
       end
     end
   end
@@ -67,9 +67,11 @@ class Game
       computer_guess = @player_board.cells.keys.sample
       if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
         @player_board.cells[computer_guess].fire_upon
+        puts "----THE ENEMY FIRE UPON #{computer_guess}------"
         break
       end
     end
+
   end
 
   private
