@@ -24,5 +24,5 @@ Presentation Points:
 - cleaning up certain methods, valid placement for example
 
 - Patrick and I worked well together. We both made time around each others schedules, and enjoyed the process. I felt heard, and hope he did as well. We rocked the project (hopefully).
-- Github Final Commit Count: 68
+- Github Final Commit Count: 70
 - Pull Requests Closed: 11
