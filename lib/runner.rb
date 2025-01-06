@@ -9,10 +9,11 @@ start_game = gets.chomp()
 
 
 if start_game == 'q' 
+  puts 'Quitter!!'
     exit
   
 else start_game == 'p'
+  puts "The sea was angry that day, my friends"
   battleship.start
 end
 
-puts "The final missile has been fired, and a still takes to the seas... The tale of what happened here today will live on in the whisper of the waves, and the heart of the sailors who carry on..."
