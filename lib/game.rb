@@ -14,7 +14,7 @@ class Game
   end
 
   def start
-    puts "The seas be still... for now. Place your ships, Admiral."
+    puts "Place your ships, Admiral."
     place_computers_ships
     place_player_ships
 
@@ -28,6 +28,7 @@ class Game
     end
     puts "-------GAME OVER-------"
     display_board
+    play_again?
   end
 
 
@@ -43,7 +44,12 @@ class Game
     elsif computer_ships_afloat == false
       type_out("The final missile has been fired, and a still takes to the seas...", 0.01)
       type_out("The tale of what happened here today will live on in the whisper of the waves, and the heart of the sailors who carry on...", 0.01)
-      type_out("You Have Emerged Victorious", 0.18)
+      puts " "
+      puts " "
+      puts " "
+      type_out("You Have Emerged Victorious.", 0.16)
+      puts " "
+      puts " "
       puts " "
       true
     else 
@@ -128,5 +134,43 @@ class Game
       sleep(delay)
     end
     puts
+  end
+
+  def clear_boards
+    @player_board.clear
+    @computer_board.clear
+  end
+
+  def ships_repaired
+    @player_ships.each do |ship|
+      ship.repair
+    end
+    @computer_ships.each do |ship|
+      ship.repair
+    end
+  end
+
+  def play_again?
+    loop do
+      puts " "
+      puts " "
+      puts " "
+      puts "Play again?"
+      puts "Y or N?"
+      user_input = gets.chomp().upcase
+
+      if user_input == "Y"
+        clear_boards
+        ships_repaired
+        start
+        break
+      elsif user_input == "N"
+        puts "Thank you for playing!"
+        break
+      else
+        puts "Invalid input. Would you like to play again?"
+        puts "Y or N?"
+      end
+    end
   end
 end

@@ -18,4 +18,9 @@ class Ship
     def hit
         @health -= 1
     end
+
+    def repair
+        @health = @length
+        @sunk = false
+    end
 end
