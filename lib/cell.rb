@@ -52,4 +52,10 @@ class Cell
     end
 
   end
+
+  def reset
+    @fired_upon = false
+    @ship = ()
+    @empty = true
+  end
 end

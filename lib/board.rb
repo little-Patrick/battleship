@@ -91,6 +91,12 @@ class Board
 "  1 2 3 4 \nA#{bunches[0]} \nB#{bunches[1]} \nC#{bunches[2]} \nD#{bunches[3]} \n"
   end
 
+  def clear
+    @cells.each do |coordinate, cell|
+      cell.reset
+    end
+  end
+
 end
 
   
