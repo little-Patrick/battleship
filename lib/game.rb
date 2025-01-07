@@ -152,6 +152,9 @@ class Game
 
   def play_again?
     loop do
+      puts " "
+      puts " "
+      puts " "
       puts "Play again?"
       puts "Y or N?"
       user_input = gets.chomp().upcase
