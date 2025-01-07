@@ -7,8 +7,8 @@ class Game
   
 
   def initialize()
-    @player_board = Board.new
-    @computer_board = Board.new
+    @player_board = VariableBoard.new(4, 4)
+    @computer_board = VariableBoard.new(4, 4)
     @player_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
     @computer_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
   end
@@ -32,8 +32,8 @@ class Game
 
 
   def game_over?
-    player_ships_afloat = @player_board.render(true).include?("S")
-    computer_ships_afloat = @computer_board.render(true).include?("S")
+    player_ships_afloat = !@player_ships.all?(&:sunk)
+    computer_ships_afloat = !@computer_ships.all?(&:sunk)
     if player_ships_afloat == false
       type_out("Wow...", 0.3) 
       type_out("You're bad at this game.")
@@ -115,10 +115,10 @@ class Game
   def display_board
     type_out('      ')
     puts '---THE ENEMY---'
-    puts @computer_board.render
+    @computer_board.render
     puts ' '
     puts '---FRIENDLY---'
-    puts @player_board.render(true)
+    @player_board.render(true)
   end
 
   def type_out(text, delay = 0.1)

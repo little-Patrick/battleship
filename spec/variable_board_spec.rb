@@ -9,6 +9,10 @@ RSpec.describe VariableBoard do
 
   describe 'initialize' do
     it 'exists' do 
+      @board = VariableBoard.new(4, 4)
+      @cruiser = Ship.new("Cruiser", 3)
+      @submarine = Ship.new("Submarine", 2)
+      @board.render(true)
       expect(@board).to be_an_instance_of(VariableBoard)
     end
 
