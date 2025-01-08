@@ -38,5 +38,15 @@ RSpec.describe Ship do
 
             expect(@cruiser.sunk?).to eq(true)
         end
+
+        it 'ability to repair' do
+            @cruiser.hit
+            @cruiser.hit
+            expect(@cruiser.health).to eq(1)
+            
+            @cruiser.repair
+
+            expect(@cruiser.health).to eq(3)
+        end
     end
 end

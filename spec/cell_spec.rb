@@ -66,4 +66,16 @@ RSpec.describe Cell do
       expect(@cell_2.render).to eq('X')
     end
   end
+
+  describe 'cell can be reset' do
+    it 'can reset the cell' do
+    @cell_1.place_ship(@cruiser)
+
+    expect(@cell_1.empty).to eq(false)
+
+    @cell_1.reset
+
+    expect(@cell_1.empty).to eq(true)
+    end
+  end
 end

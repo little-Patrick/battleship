@@ -37,39 +37,25 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    # ship.length == coordinate.count ? c_and_l = true : c_and_l = false
     return false if ship.length != coordinates.count || coordinates.any? { |coordinate| cells[coordinate].empty? == false}
-    #letter
     row = coordinates.map do |letter| 
       letter.slice(0, 1)
     end
-    # #number
     column  = coordinates.map do |num| 
       num.slice(1, 1).to_i
     end
-    
-    # valid_placement = []
 
     if row.uniq.length == 1
       column.each_cons(2).all? do |a, b| 
         @valid_placement = true if (b - a == 1)
       end
-      # column.each_cons(2) do |a, b| 
-      #   valid_placement << (b - a == 1)
-      # end
     elsif column.uniq.length == 1
       row.each_cons(2).all? do |a, b| 
         @valid_placement = true if (b.ord - a.ord == 1)
         end
-      # row.each_cons(2) do |a, b| 
-
-      #   valid_placement << (b.ord - a.ord == 1)
-        
-      # end
     else
       return @valid_placement = false
     end
-    # valid_placement.all?{|b| b == true}
   end
 
   def place(ship, coordinates)
@@ -88,7 +74,7 @@ class Board
 
     bunches =rendered_cells.chars.each_slice(8).map(&:join)
 
-"  1 2 3 4 \nA#{bunches[0]} \nB#{bunches[1]} \nC#{bunches[2]} \nD#{bunches[3]} \n"
+    "  1 2 3 4 \nA#{bunches[0]} \nB#{bunches[1]} \nC#{bunches[2]} \nD#{bunches[3]} \n"
   end
 
   def clear
@@ -96,58 +82,4 @@ class Board
       cell.reset
     end
   end
-
 end
-
-  
-
-    #   row_ordered = row == row.sort
-    # binding.pry
-    #   if row.all? do |letter|
-    #       row[0] == letter
-    #     end
-    #   binding.pry
-    #     column_ordered = column == column.sort.each_cons(2) {|a, b| return false if b - a != 1}
-    #   end
-    # row_same = row.uniq.length == 1
-    # column_same = column.uniq.length == 1
-
-    
-    
-    # if row_same == true || column_same == true
-    #   diagonal = false
-    # else 
-    #   diagonal = true
-    # end
-
-    #   if c_and_l == true && row_ordered == true && column_ordered == true && diagonal == false
-    #     @valid_placement = true
-    #   else
-    #     @valid_placement = false
-    #   end
-      
-    #   @valid_placement  
-    #   # binding.pry
-
-# array to be in order
-# confirms array has the same value
-
-## Split string into row and column
-  # iterate over row to see if letters are the same
-  # see if numbers are in order
-  # it is a valid placement
-  # elsif the column numbers are the same
-  # see if the letters are in order
-  # the ship placement is valid
-  # else valid placement is false
-
-      # cells_to_render = cells.to_a
-
-    # rendered_cells = cells_to_render.map do |cell|
-    #   binding.pry
-    #   cells[cell].render
-    # end
-
-    # split_cells = rendered_cells.each_slice(4).to_a
-
-    # "  1 2 3 4 \nA #{split_cells[0]} \nB #{split_cells[1]} \nC #{split_cells[2]} \nD #{split_cells[3]}\n"

@@ -66,7 +66,7 @@ class Game
         @computer_board.cells[player_guess].fire_upon
         if  @computer_board.cells[player_guess].empty?
           puts ' '
-          type_out('SpLoOoOoOsH...')
+          type_out('SpLoOoOoOsH...', 0.08)
         else
           puts ' '
           type_out('!!!!KAhbOooOOoOMmmM!!!', 0.05)
@@ -84,7 +84,7 @@ class Game
       if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
         @player_board.cells[computer_guess].fire_upon
         puts ' '
-        type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+        type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.07)
         break
       end
     end

@@ -50,7 +50,6 @@ RSpec.describe Board do
     it 'can pass when needed' do
       expect(@board.valid_placement?(@submarine, ["A1", "A2"])).to eq(true)
       expect(@board.valid_placement?(@cruiser, ["A1", "A2", 'A3'])).to eq(true)
-
     end
 
     it 'cruiser' do
@@ -82,12 +81,22 @@ RSpec.describe Board do
     end
   end
 
-  describe 'rendering the board' do
+  describe 'shows the board' do
     it 'renders the board' do
     @board.place(@cruiser, ["A1", "A2", "A3"])
 
     expect(@board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+    end
+
+    it 'can clear the board and reset the game' do
+      @board.place(@cruiser, ["A1", "A2", "A3"])
+
+      expect(@board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
+
+      @board.clear
+
+      expect(@board.render(true)).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
     end
   end
 end
