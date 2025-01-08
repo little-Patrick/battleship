@@ -65,7 +65,7 @@ class VariableBoard
   def render(show = false, full_render = false)
     render_cells = @cells.values.map{|x| x.render(show)}
     if full_render == true
-      render_cells.each_slice(column){|x| print "#{x.join(' ')}\n"}
+      render_cells.each_slice(column){|x| puts "#{x.join(' ')}\n" }
     else 
       render_cells
     end

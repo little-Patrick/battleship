@@ -7,8 +7,8 @@ class Game
   
 
   def initialize()
-    @player_board = VariableBoard.new(4, 4)
-    @computer_board = VariableBoard.new(4, 4)
+    @player_board = VariableBoard.new(20, 20)
+    @computer_board = VariableBoard.new(20, 20)
     @player_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
     @computer_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
   end
