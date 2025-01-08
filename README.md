@@ -9,7 +9,7 @@ Written Reflection:
 3. We did a lot of driver/navigator. That was our main method. It was really great that we both managed to make times that worked, so we were able to meet for the whole thing.
 
 4. Jacob: Patrick was very supportive of all my ideas, including the silly ones. Whenever I had the seed of an idea, he would let me kind of ramble, and help me make sense of it. I'd say most of those ideas actually ended up seeing the light of day in this project, and it wouldn't have been possible without him.
-Patrick:
+Patrick: During the project it was great to have the driver/navigator experience to help work through problems. Jacob is great at talking through and rubber duckying solution path with. It was also fun towards the end of the project to be able to work on different things but still bounce ideas off of each other and share the funny bugs we came into.
 
 Presentation Points:
 
@@ -24,5 +24,5 @@ Presentation Points:
 - cleaning up certain methods, valid placement for example
 
 - Patrick and I worked well together. We both made time around each others schedules, and enjoyed the process. I felt heard, and hope he did as well. We rocked the project (hopefully).
-- Github Final Commit Count: 74
+- Github Final Commit Count: 75
 - Pull Requests Closed: 12
