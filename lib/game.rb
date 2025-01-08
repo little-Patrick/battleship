@@ -4,7 +4,6 @@ class Game
               :player_ships, 
               :computer_ships
               :last_guess
-              
   
 
   def initialize()
