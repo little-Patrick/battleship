@@ -104,7 +104,7 @@ class Game
   #         end   
   #       end
   #     else
-  #         computer_guess = @player_board.cells.keys.sample(1)
+  #         computer_guess = @player_board.cells.keys.sample
   #         if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
   #             @player_board.cells[computer_guess].fire_upon
   #             puts ' '
@@ -260,13 +260,18 @@ class Game
     row_idx = row.ord - 'A'.ord
     col_idx = col.to_i - 1  # Corrected to 'col.to_i', not 'col.to_1'
   
+    # surrounding_coords = [
+    #   "#{(row_idx - 1 + 4) % 4 + "A".ord.chr}#{col}",  # Up: wrap around if out of bounds
+    #   "#{(row_idx + 1) % 4 + "A".ord.chr}#{col}",      # Down: wrap around if out of bounds
+    #   "#{row}#{col_idx - 1 + 1}",                       # Left: decrease column
+    #   "#{row}#{col_idx + 1 + 1}"                        # Right: increase column
+    # ]
     surrounding_coords = [
-      "#{(row_idx - 1 + 4) % 4 + "A".ord}#{col}",  # Up: wrap around if out of bounds
-      "#{(row_idx + 1) % 4 + "A".ord}#{col}",      # Down: wrap around if out of bounds
-      "#{row}#{col_idx - 1 + 1}",                       # Left: decrease column
-      "#{row}#{col_idx + 1 + 1}"                        # Right: increase column
-    ]
-  
+    "#{((row_idx - 1) % 4 + 4) % 4 + 'A'.ord.chr}#{col}",  # Up: wrap around if out of bounds
+    "#{(row_idx + 1) % 4 + 'A'.ord.chr}#{col}",            # Down: wrap around if out of bounds
+    "#{row}#{col_idx - 1 + 1}",                             # Left: decrease column
+    "#{row}#{col_idx + 1 + 1}"                              # Right: increase column
+  ]
     # Collect all valid surrounding coordinates
     valid_coords = surrounding_coords.select do |coord|
       @player_board.valid_coordinate?(coord) && !@player_board.cells[coord].fired_upon?
