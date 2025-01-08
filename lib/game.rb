@@ -3,6 +3,7 @@ class Game
               :computer_board, 
               :player_ships, 
               :computer_ships
+              :last_guess
               
   
 
@@ -11,6 +12,7 @@ class Game
     @computer_board = Board.new
     @player_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
     @computer_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
+    @last_guess = nil
   end
 
   def start
@@ -78,19 +80,87 @@ class Game
     end
   end
 
+  # def computer_turn
+  #   last_guess = nil
+  #   loop do
+  #     if last_guess && @player_board.cells[last_guess].render == 'H' 
+  #       nearby_coords = check_surroundings(last_guess)
+  #       if nearby_coords && nearby_coords.empty?
+  #         computer_guess = nearby_coords.first
+  #         if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
+  #           @player_board.cells[computer_guess].fire_upon
+  #           puts ' '
+  #           type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+  #           last_guess = computer_guess
+  #           break
+  #         end
+  #       else
+  #         computer_guess = @player_board.cells.keys.sample
+  #         if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
+  #             @player_board.cells[computer_guess].fire_upon
+  #             puts ' '
+  #             type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+  #             last_guess = computer_guess
+  #             break
+  #         end   
+  #       end
+  #     else
+  #         computer_guess = @player_board.cells.keys.sample(1)
+  #         if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
+  #             @player_board.cells[computer_guess].fire_upon
+  #             puts ' '
+  #             type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+  #             last_guess = computer_guess
+  #             break
+  #         end
+  #     end
+  #   end
+  # end
   def computer_turn
     loop do
-      computer_guess = @player_board.cells.keys.sample
-      if @player_board.valid_coordinate?(computer_guess) && @player_board.cells[computer_guess].fired_upon? == false
-        @player_board.cells[computer_guess].fire_upon
-        puts ' '
-        type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
-        break
+      if @last_guess && @player_board.cells[@last_guess].render == 'H' && !@player_board.cells[@last_guess].empty?
+        puts "Last guess was a hit: #{@last_guess}"  # Debug: Check if last guess was a hit
+        nearby_coords = check_surroundings(@last_guess)
+        puts "Nearby coords: #{nearby_coords}"  # Debug: Check surrounding coordinates
+  
+        if nearby_coords && !nearby_coords.empty?
+          computer_guess = nearby_coords.first  # Get the first nearby coordinate
+          puts "Trying nearby target: #{computer_guess}"  # Debug: What is the target?
+  
+          if @player_board.valid_coordinate?(computer_guess) && !@player_board.cells[computer_guess].fired_upon?
+            @player_board.cells[computer_guess].fire_upon
+            puts ' '
+            type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+            @last_guess = computer_guess
+            break
+          end
+        else
+          # Fallback to random guess if no nearby targets
+          computer_guess = @player_board.cells.keys.sample
+          puts "No nearby targets, trying random guess: #{computer_guess}"  # Debug: Random guess fallback
+          if @player_board.valid_coordinate?(computer_guess) && !@player_board.cells[computer_guess].fired_upon?
+            @player_board.cells[computer_guess].fire_upon
+            puts ' '
+            type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+            @last_guess = computer_guess
+            break
+          end
+        end
+      else
+        # First turn or miss
+        computer_guess = @player_board.cells.keys.sample
+        puts "First guess or miss, random target: #{computer_guess}"  # Debug: Random guess
+        if @player_board.valid_coordinate?(computer_guess) && !@player_board.cells[computer_guess].fired_upon?
+          @player_board.cells[computer_guess].fire_upon
+          puts ' '
+          type_out("THE ENEMY FIRED UPON #{computer_guess}", 0.08)
+          @last_guess = computer_guess
+          break
+        end
       end
     end
-
   end
-
+  
   private
 
   def place_computers_ships
@@ -173,4 +243,37 @@ class Game
       end
     end
   end
+
+  # def check_surroundings(coordinate)
+  #   row, col = coordinate.split('')
+  #   row_idx = row.ord - 'A'.ord
+  #   col_idx = col.to_i - 1
+
+  #   surrounding_coords = ["#{(row_idx - 1 +4) % 4 + 'A'.ord.chr}#{col}", "#{(row_idx + 1) % 4 + 'A'.ord.chr}#{col}", "#{row}#{col_idx - 1 + 1}", "#{row}#{col_idx +1 + 1}"]
+
+  #   valid_coords = surrounding_coords.select do |coord|
+  #     @player_board.valid_coordinate?(coord) && !@player_board.cells[coord].fired_upon?  
+  #   end
+  #   return valid_coords
+  # end
+  def check_surroundings(coordinate)
+    row, col = coordinate.split('')
+    row_idx = row.ord - 'A'.ord
+    col_idx = col.to_i - 1  # Corrected to 'col.to_i', not 'col.to_1'
+  
+    surrounding_coords = [
+      "#{(row_idx - 1 + 4) % 4 + "A".ord}#{col}",  # Up: wrap around if out of bounds
+      "#{(row_idx + 1) % 4 + "A".ord}#{col}",      # Down: wrap around if out of bounds
+      "#{row}#{col_idx - 1 + 1}",                       # Left: decrease column
+      "#{row}#{col_idx + 1 + 1}"                        # Right: increase column
+    ]
+  
+    # Collect all valid surrounding coordinates
+    valid_coords = surrounding_coords.select do |coord|
+      @player_board.valid_coordinate?(coord) && !@player_board.cells[coord].fired_upon?
+    end
+  
+    return valid_coords  # Return all valid surrounding coordinates
+  end
+  
 end
