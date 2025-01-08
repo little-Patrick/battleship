@@ -115,10 +115,10 @@ class Game
   def display_board
     type_out('      ')
     puts '---THE ENEMY---'
-    @computer_board.render
+    @computer_board.render(false, true)
     puts ' '
     puts '---FRIENDLY---'
-    @player_board.render(true)
+    @player_board.render(true, true)
   end
 
   def type_out(text, delay = 0.1)
