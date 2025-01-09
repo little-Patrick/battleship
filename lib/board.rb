@@ -37,6 +37,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
+    return false if !coordinates.all? { |coordinate| valid_coordinate?(coordinate)}
     return false if ship.length != coordinates.count || coordinates.any? { |coordinate| cells[coordinate].empty? == false}
     row = coordinates.map do |letter| 
       letter.slice(0, 1)
